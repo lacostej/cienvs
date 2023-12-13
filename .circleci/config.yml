@@ -19,7 +19,8 @@ jobs:
       - run:
           name: debug | ruby version
           command: |
-            ruby -v | tee ~/ruby_version.txt
+            which ruby | tee ~/ruby_version.txt
+            ruby -v | tee -a ~/ruby_version.txt
       - store_artifacts:
           path: ~/ruby_version.txt
           destination: ruby_version.txt
