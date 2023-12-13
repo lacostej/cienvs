@@ -2,6 +2,9 @@
 
 version: 2.1
 
+orbs:
+  macos: circleci/macos@2
+
 jobs:
   tests_macos:
     description: 'Run commandson macOS with given Xcode'
@@ -16,6 +19,8 @@ jobs:
     shell: '/bin/bash --login -eo pipefail'
     steps:
       - checkout
+      - macos/switch-ruby:
+        version: "system"
       - run:
           name: debug | ruby version
           command: |
