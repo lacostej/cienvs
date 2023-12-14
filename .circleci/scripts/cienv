@@ -1,0 +1,11 @@
+#!/bin/bash --login -eo pipefail
+#!/usr/bin/env bash
+
+echo "# which ruby"
+which ruby
+echo "# ruby version"
+ruby -v
+echo "# ulimits"
+ulimit -a
+echo "# maxfiles"
+sysctl -a | grep maxfiles
