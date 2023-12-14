@@ -21,7 +21,7 @@ jobs:
           name: troubleshoot switch-ruby
           command: |
             export ORB_VAL_RUBY_VERSION="system"
-            sh ~/.circleci/scripts/switch-ruby
+            sh .circleci/scripts/switch-ruby
       #- run:
       #    name: troubleshoot switch-ruby
       #    command: |
