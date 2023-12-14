@@ -4,7 +4,7 @@
 set -o xtrace
 if command -v rbenv >/dev/null 2>&1; then
     version=$(rbenv versions --bare | grep "$ORB_VAL_RUBY_VERSION" | head -n 1)
-    if [ -z "$version" && "$ORB_VAL_RUBY_VERSION" != "system" ]; then
+    if [[ -z "$version" && "$ORB_VAL_RUBY_VERSION" != "system" ]]; then
         printf "\nNo Rubies installed that match version %s\n" "$ORB_VAL_RUBY_VERSION"
         printf "\nInstalled versions:\n"
         rbenv versions
