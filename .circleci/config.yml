@@ -31,8 +31,8 @@ jobs:
       #      ruby -v
       #      command -v rbenv
       #      /usr/bin/xcodebuild -version
-      - macos/switch-ruby:
-          version: "system"
+      #- macos/switch-ruby:
+      #    version: "system"
       - run:
           name: debug | ruby version
           command: |
