@@ -20,6 +20,7 @@ jobs:
       - run:
           name: troubleshoot switch-ruby
           command: |
+            set +o pipefail
             echo shell: $SHELL
             env | sort
             ruby -v
