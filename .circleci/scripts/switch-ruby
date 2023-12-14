@@ -8,6 +8,8 @@ if command -v rbenv >/dev/null 2>&1; then
         printf "\nNo Rubies installed that match version %s\n" "$ORB_VAL_RUBY_VERSION"
         printf "\nInstalled versions:\n"
         rbenv versions
+        printf "\nInstalled versions --bare:\n"
+        rbenv versions --bare
         exit 1
     fi
 
