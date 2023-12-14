@@ -1,9 +1,7 @@
----
-
 version: 2.1
 
 orbs:
-  macos: circleci/macos@2
+  macos: circleci/macos@2.4.0
 
 jobs:
   tests_macos:
@@ -20,7 +18,7 @@ jobs:
     steps:
       - checkout
       - macos/switch-ruby:
-        version: "system"
+          version: "system"
       - run:
           name: debug | ruby version
           command: |
