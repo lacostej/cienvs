@@ -17,11 +17,11 @@ jobs:
     shell: '/bin/bash --login -eo pipefail'
     steps:
       - checkout
-      #- run:
-      #    name: troubleshoot switch-ruby
-      #    command: |
-      #      export ORB_VAL_RUBY_VERSION="system"
-      #      sh .circleci/scripts/switch-ruby
+      - run:
+          name: troubleshoot switch-ruby
+          command: |
+            export ORB_VAL_RUBY_VERSION="system"
+            sh .circleci/scripts/switch-ruby
       #- run:
       #    name: troubleshoot switch-ruby
       #    command: |
