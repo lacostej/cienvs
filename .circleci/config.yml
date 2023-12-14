@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  macos: circleci/macos@2.3.4
+  macos: circleci/macos@2.4.1
 
 jobs:
   tests_macos:
@@ -17,24 +17,8 @@ jobs:
     shell: '/bin/bash --login -eo pipefail'
     steps:
       - checkout
-      - run:
-          name: troubleshoot switch-ruby
-          command: |
-            export ORB_VAL_RUBY_VERSION="system"
-            .circleci/scripts/switch-ruby
-            which ruby
-            ruby -v
-      #- run:
-      #    name: troubleshoot switch-ruby
-      #    command: |
-      #      set +o pipefail
-      #      echo shell: $SHELL
-      #      env | sort
-      #      ruby -v
-      #      command -v rbenv
-      #      /usr/bin/xcodebuild -version
-      #- macos/switch-ruby:
-      #    version: "system"
+      - macos/switch-ruby:
+          version: "system"
       - run:
           name: debug | ruby version
           command: |
