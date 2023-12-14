@@ -20,12 +20,17 @@ jobs:
       - run:
           name: troubleshoot switch-ruby
           command: |
-            set +o pipefail
-            echo shell: $SHELL
-            env | sort
-            ruby -v
-            command -v rbenv
-            /usr/bin/xcodebuild -version
+            export ORB_VAL_RUBY_VERSION="system"
+            sh ~/.circleci/scripts/switch-ruby
+      #- run:
+      #    name: troubleshoot switch-ruby
+      #    command: |
+      #      set +o pipefail
+      #      echo shell: $SHELL
+      #      env | sort
+      #      ruby -v
+      #      command -v rbenv
+      #      /usr/bin/xcodebuild -version
       - macos/switch-ruby:
           version: "system"
       - run:
