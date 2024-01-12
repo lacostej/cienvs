@@ -22,11 +22,10 @@ jobs:
       - run:
           name: debug | ruby version
           command: |
-            which ruby | tee ~/ruby_version.txt
-            ruby -v | tee -a ~/ruby_version.txt
+            .circleci/scripts/cienv | tee -a ~/cienv.txt
       - store_artifacts:
-          path: ~/ruby_version.txt
-          destination: ruby_version.txt
+          path: ~/cienv.txt
+          destination: cienv.txt
 
 workflows:
   version: 2
