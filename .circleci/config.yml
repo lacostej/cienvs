@@ -29,6 +29,7 @@ jobs:
           destination: cienv.txt
   gather_artifacts:
     description: 'Gather artifacts from the jobs'
+    executor: python/default
     steps:
       - checkout
       - run:
