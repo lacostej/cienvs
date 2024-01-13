@@ -6,16 +6,16 @@ orbs:
 
 jobs:
   tests_macos:
-    description: 'Run commandson macOS with given Xcode'
+    description: "Run commandson macOS with given Xcode"
     macos:
       xcode: << parameters.xcode_version >>
     parameters:
       xcode_version:
         type: string
     environment:
-      LC_ALL: 'en_US.UTF-8'
-      LANG: 'en_US.UTF-8'
-    shell: '/bin/bash --login -eo pipefail'
+      LC_ALL: "en_US.UTF-8"
+      LANG: "en_US.UTF-8"
+    shell: "/bin/bash --login -eo pipefail"
     steps:
       - checkout
       - macos/switch-ruby:
@@ -28,7 +28,7 @@ jobs:
           path: ~/cienv.txt
           destination: cienv.txt
   gather_artifacts:
-    description: 'Gather artifacts from the jobs'
+    description: "Gather artifacts from the jobs"
     executor: python/default
     steps:
       - checkout
@@ -45,11 +45,23 @@ workflows:
   build:
     jobs:
       - tests_macos:
-          name: 'tests on macOS (Xcode << matrix.xcode_version >>)'
+          name: "tests on macOS (Xcode << matrix.xcode_version >>)"
           matrix:
             parameters:
-              xcode_version: [ '12.5.1' ] #, '13.4.1', '14.0.1', '14.1.0', '14.2.0', '14.3.1', '15.0.0', '15.0.1' ]
+              xcode_version:
+                [
+                  "12.5.1",
+                  "13.4.1",
+                  "14.0.1",
+                  "14.1.0",
+                  "14.2.0",
+                  "14.3.1",
+                  "15.0.0",
+                  "15.0.1",
+                  "15.1.0",
+                  "15.2.0",
+                ]
       - gather_artifacts:
-          name: 'Gather the data'
+          name: "Gather the data"
           requires:
             - tests_macos
