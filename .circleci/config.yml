@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   macos: circleci/macos@2.4.1
+  python: circleci/python@2.1.1
 
 jobs:
   tests_macos:
@@ -26,32 +27,28 @@ jobs:
       - store_artifacts:
           path: ~/cienv.txt
           destination: cienv.txt
+  gather_artifacts:
+    description: 'Gather artifacts from the jobs'
+    steps:
+      - checkout
+      - run:
+          name: gather artifacts
+          command: |
+            .circleci/scripts/circle_artifacts.py
+      - store_artifacts:
+          path: artifacts.zip
+          destination: artifacts.zip
 
 workflows:
   version: 2
   build:
     jobs:
       - tests_macos:
-          name: 'tests on macOS (Xcode 12.5.1)'
-          xcode_version: '12.5.1'
-      - tests_macos:
-          name: 'tests on macOS (Xcode 13.4.1)'
-          xcode_version: '13.4.1'
-      - tests_macos:
-          name: 'tests on macOS (Xcode 14.0.1)'
-          xcode_version: '14.0.1'
-      - tests_macos:
-          name: 'tests on macOS (Xcode 14.1.0)'
-          xcode_version: '14.1.0'
-      - tests_macos:
-          name: 'tests on macOS (Xcode 14.2.0)'
-          xcode_version: '14.2.0'
-      - tests_macos:
-          name: 'tests on macOS (Xcode 14.3.1)'
-          xcode_version: '14.3.1'
-      - tests_macos:
-          name: 'tests on macOS (Xcode 15.0.0)'
-          xcode_version: '15.0.0'
-      - tests_macos:
-          name: 'tests on macOS (Xcode 15.0.1)'
-          xcode_version: '15.0.1'
+          name: 'tests on macOS (Xcode << matrix.xcode_version >>)'
+          matrix:
+            parameters:
+              xcode_version: [ '12.5.1' ] #, '13.4.1', '14.0.1', '14.1.0', '14.2.0', '14.3.1', '15.0.0', '15.0.1' ]
+      - gather_artifacts:
+          name: 'Gather the data'
+          requires:
+            - tests_macos
