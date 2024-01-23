@@ -28,6 +28,7 @@ jobs:
           name: debug | test pty
           command: |
             brew install stress
+            ruby test_pty.rb "echo foo"
             STRESS=y ruby test_pty.rb "echo foo"
       - store_artifacts:
           path: ~/cienv.txt
