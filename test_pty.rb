@@ -80,7 +80,10 @@ errors = 0
 end
 
 if t
-  Process.kill(:SIGKILL, -pid)
+  begin
+    Process.kill(:SIGKILL, -pid)
+  rescue Errno::ESRCH # already dead, ignore
+  end
   t.join
 end
 
